@@ -16,7 +16,7 @@ public class BoundedBlockingBuffer<T> {
             e.printStackTrace();
         }
         data = object;
-        notifyAll();
+        notify();
     }
 
     public synchronized T take() {
@@ -29,12 +29,8 @@ public class BoundedBlockingBuffer<T> {
         }
         T element = data;
         data = null;
-        notifyAll();
+        notify();
         return element;
-    }
-
-    public synchronized boolean isFull() {
-        return data != null;
     }
 
 }
